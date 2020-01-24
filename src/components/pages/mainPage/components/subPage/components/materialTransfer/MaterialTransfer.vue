@@ -482,18 +482,6 @@ export default class materialTransfer extends Vue {
         cItemsArr[i].hmotnostValidDiff = false;
         res++;
       }
-      // if (cItemsArr[i].mnozstvi === this.itemsMaterialFiltered[cItemsArr[i].index].rendered.mnozstvi) {
-      //   cItemsArr[i].mnozstviValid = true;
-      // } else {
-      //   cItemsArr[i].mnozstviValid = false;
-      //   res = false;
-      // }
-      // if (cItemsArr[i].hmotnost === this.itemsMaterialFiltered[cItemsArr[i].index].rendered.hmotnost) {
-      //   cItemsArr[i].hmotnostValid = true;
-      // } else {
-      //   cItemsArr[i].hmotnostValid = false;
-      //   res = false;
-      // }
     }
     return res === 0;
   }
