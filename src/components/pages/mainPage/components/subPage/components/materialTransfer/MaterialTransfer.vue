@@ -2,34 +2,10 @@
   <div :id="idComponent" class="subcategory">
     <p class="title">{{title}}</p>
     <p class="text">{{text}}</p>
-    <!-- <div class="search-dropdown update-input" id="kmat">
-      <label>KMAT</label>
-      <multiselect
-      v-model="valueKmat" :options="optionsKmat"
-      :custom-label="customSelectKmat"
-      placeholder=""
-      label="title" track-by="title"
-      :show-labels="false"
-      :allow-empty="false"
-      @select="onChangeMultiselect($event, 'kmat')">
-      </multiselect>
-    </div> -->
     <div class="form-group update-input">
       <label for="kmat">KMAT</label>
       <input type="text" class="form-control" id="kmat" v-model="valueKmat">
     </div>
-    <!-- <div class="search-dropdown update-input" id="mvm">
-      <label>MVM</label>
-      <multiselect
-      v-model="valueMvm" :options="optionsMvm"
-      :custom-label="customSelectMvm"
-      placeholder=""
-      label="title" track-by="title"
-      :show-labels="false"
-      :allow-empty="false"
-      @select="onChangeMultiselect($event, 'mvm')">
-      </multiselect>
-    </div> -->
     <div class="form-group update-input">
       <label for="mvm">MVM</label>
       <input type="text" class="form-control" id="mvm" v-model="valueMvm">
@@ -73,13 +49,6 @@
               <span>{{item.rendered.hmotnost}}</span>
             </td>
             <td>
-              <!-- <span v-if="inputChanged(index, item)"> -->
-              <!-- <span v-if="item.diff==='modified'">
-                <i class="fa fa-arrow-circle-left" style="color:red" aria-hidden="true"></i> Modified
-              </span>
-              <span v-if="item.diff==='saved'">
-                <i class="fa fa-check" style="color:green" aria-hidden="true"></i> Saved
-              </span> -->
               <span v-if="itemClicked === index">
                 <i class="fa fa-check" style="color:green" aria-hidden="true"></i> Copied
               </span>
@@ -251,35 +220,6 @@ export default class materialTransfer extends Vue {
     return false;
   }
 
-  // inputLeft(index: any, item: any) {
-  //   if (item.rendered.kmat === '' || item.rendered.mvm === '' || item.rendered.mnozstvi === '' || item.rendered.hmotnost === '') {
-  //     if (item.rendered.kmat === '') {
-  //       item.rendered.kmat = item.original.kmat;
-  //     } else if (item.rendered.mvm === '') {
-  //       item.rendered.mvm = item.original.mvm;
-  //     } else if (item.rendered.mnozstvi === '') {
-  //       item.rendered.mnozstvi = item.original.mnozstvi;
-  //     } else if (item.rendered.hmotnost === '') {
-  //       item.rendered.hmotnost = item.original.hmotnost;
-  //     }
-  //     this.copiedItems[item.rendered.id] = gh.typeReset(gh.trimString(_.clone(item.rendered)), item.type);
-  //   }
-  // }
-
-  // inputChanged(index: any, item: any) {
-  //   if (item && !_.isEqual(item.rendered, item.original)) {
-  //     item['diff'] = 'modified';
-  //     this.copiedItems[item.rendered.id] = gh.typeReset(gh.trimString(_.clone(item.rendered)), item.type);
-  //     item.rendered.kmat = item.rendered.kmat.trim();
-  //     item.rendered.mvm = item.rendered.mvm.trim();
-  //     item.rendered.mnozstvi = item.rendered.mnozstvi.trim();
-  //     item.rendered.hmotnost = item.rendered.hmotnost.trim();
-  //   } else {
-  //     delete item.diff;
-  //     delete this.copiedItems[item.rendered.id];
-  //   }
-  // }
-
   inputCopied(item: any, index: number) {
     debugger;
     this.copiedItems = {};
@@ -307,7 +247,7 @@ export default class materialTransfer extends Vue {
       debugger;
       console.log('updateChangesAndStore done');
       // const dataObj = _.values(this.copiedItems);
-      const dataObj = this.copiedItemsArr;
+      const dataObj = this.consolidateData(this.copiedItemsArr);
       this.setMode({ reference: REFERENCE_INITIAL, status: MODE_LOADING });
       // const headers = { 'Content-Type': 'text/plain;charset=UTF-8', 'ibm-sec-token': this.accessToken };
       httpService.putDirect(materialBaseUrl, dataObj).then((response) => {
@@ -321,6 +261,20 @@ export default class materialTransfer extends Vue {
         this.messageBoxHide();
       });
     }
+  }
+
+  consolidateData(inArr: any[]): any[] {
+    const res: any = [];
+    for (let i = 0; i < inArr.length; i++) {
+      res.push({
+        id: inArr[i].id,
+        kmat: inArr[i].kmat,
+        mvm: inArr[i].mvm,
+        mnozstvi: inArr[i].mnozstvi ? Number(inArr[i].mnozstvi) : '',
+        hmotnost: inArr[i].hmotnost ? Number(inArr[i].hmotnost) : ''
+      });
+    }
+    return res;
   }
 
   onChangeMultiselect(event: any, id: any) {
@@ -425,17 +379,6 @@ export default class materialTransfer extends Vue {
       this.copiedItems = {};
     });
   }
-
-  // itemBackupFill(item: any) {
-  //   console.log('input in');
-  //   this.itemCopiedBackup = _.clone(item);
-  //   // this.itemCopiedBackup['mvmValid'] = false;
-  // }
-
-  // itemBackupClean() {
-  //   console.log('input out');
-  //   // this.itemCopiedBackup = {};
-  // }
 
   checkCopiedValues(cItemsArr: any[]) {
     debugger;
