@@ -309,8 +309,8 @@ export default class materialTransfer extends Vue {
       // const dataObj = _.values(this.copiedItems);
       const dataObj = this.copiedItemsArr;
       this.setMode({ reference: REFERENCE_INITIAL, status: MODE_LOADING });
-      const headers = { 'Content-Type': 'text/plain;charset=UTF-8', 'ibm-sec-token': this.accessToken };
-      httpService.putDirect(materialBaseUrl, dataObj, { headers }).then((response) => {
+      // const headers = { 'Content-Type': 'text/plain;charset=UTF-8', 'ibm-sec-token': this.accessToken };
+      httpService.putDirect(materialBaseUrl, dataObj).then((response) => {
         this.messageBoxShow('success');
         this.updateChanges();
       }, (error) => {
@@ -410,8 +410,8 @@ export default class materialTransfer extends Vue {
     debugger;
     this.setMode({ reference: REFERENCE_INITIAL, status: MODE_LOADING });
     // httpMockService.getMockDataTransferDelay().then((response: any) => {
-    const headers = { 'Content-Type': 'text/plain;charset=UTF-8', 'ibm-sec-token': this.accessToken };
-    httpService.getDirect(this.generateUrl, { headers }).then((response) => {
+    // const headers = { 'Content-Type': 'text/plain;charset=UTF-8', 'ibm-sec-token': this.accessToken };
+    httpService.getDirect(this.generateUrl).then((response) => {
       debugger;
       // this.itemsMaterialFiltered = response;
       this.messageBoxShow('success');

@@ -256,8 +256,8 @@ export default class MaterialUpdate extends Vue {
   updateChangesAndStore() {
     const dataObj = _.values(this.modifiedItems);
     this.setMode({ reference: REFERENCE_INITIAL, status: MODE_LOADING });
-    const headers = { 'Content-Type': 'text/plain;charset=UTF-8', 'ibm-sec-token': this.accessToken };
-    httpService.putDirect(materialBaseUrl, dataObj, { headers }).then((response) => {
+    // const headers = { 'Content-Type': 'text/plain;charset=UTF-8', 'ibm-sec-token': this.accessToken };
+    httpService.putDirect(materialBaseUrl, dataObj).then((response) => {
       this.messageBoxShow('success');
       this.updateChanges();
     }, (error) => {
@@ -354,8 +354,8 @@ export default class MaterialUpdate extends Vue {
 
   loadMaterialItems() {
     this.setMode({ reference: REFERENCE_INITIAL, status: MODE_LOADING });
-    const headers = { 'Content-Type': 'text/plain;charset=UTF-8', 'ibm-sec-token': this.accessToken };
-    httpService.getDirect(this.generateUrl, { headers }).then((response) => {
+    // const headers = { 'Content-Type': 'text/plain;charset=UTF-8', 'ibm-sec-token': this.accessToken };
+    httpService.getDirect(this.generateUrl).then((response) => {
     // httpMockService.getMockJournalDelay().then((response) => {
       this.messageBoxShow('success');
       this.itemsMaterialFiltered = gh.renderedOriginal(response.data.materials);
