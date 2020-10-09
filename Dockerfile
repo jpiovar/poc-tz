@@ -1,8 +1,12 @@
 #FROM node:lts-alpine
 FROM node:12.2.0-alpine
+#FROM docker.io/library/centos:7
 
 # Replace shell with bash so we can source files
 # RUN rm /bin/sh && ln -s /bin/bash /bin/sh
+
+#20201009 JHUSAK to try to fix Error: could not get uid/gid   [ 'nobody', 0 ]
+npm_config_unsafe_perm=true
 
 # make sure apt is up to date
 ##RUN apk add update --fix-missing
