@@ -6,7 +6,7 @@ FROM node:12.2.0-alpine
 # RUN rm /bin/sh && ln -s /bin/bash /bin/sh
 
 #20201009 JHUSAK to try to fix Error: could not get uid/gid   [ 'nobody', 0 ]
-npm_config_unsafe_perm=true
+RUN npm config set unsafe-perm true
 
 # make sure apt is up to date
 ##RUN apk add update --fix-missing
