@@ -44,6 +44,9 @@ ENV PATH /app/node_modules/.bin:$PATH
 
 # copy both 'package.json' and 'package-lock.json' (if available)
 COPY package*.json ./
+#20201009 JHUSAK try to fix  Error: Cannot find "/app/tsconfig.json" file. Please check webpack and ForkTsCheckerWebpackPlugin configuration.
+COPY tsconfig.json ./
+
 #COPY package.json /app/package.json
 
 # install project dependencies
