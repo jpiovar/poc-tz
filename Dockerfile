@@ -44,14 +44,16 @@ ENV PATH /app/node_modules/.bin:$PATH
 
 # copy both 'package.json' and 'package-lock.json' (if available)
 COPY package*.json ./
-#20201009 JHUSAK try to fix  Error: Cannot find "/app/tsconfig.json" file. Please check webpack and ForkTsCheckerWebpackPlugin configuration.
-COPY tsconfig.json ./
 
-#COPY package.json /app/package.json
+#20201009 JHUSAK try to fix  Error: Cannot find "/app/tsconfig.json" file. Please check webpack and ForkTsCheckerWebpackPlugin configuration.
+#COPY tsconfig.json ./
 
 # install project dependencies
 RUN npm install @vue/cli@3.7.0 -g \
-&& npm install 
+&& npm install
+
+#20201014 Added Jhusak 
+npm cache clean --force && npm cache verify && npm install
 
 # copy project files and folders to the current working directory (i.e. 'app' folder)
 COPY . .
