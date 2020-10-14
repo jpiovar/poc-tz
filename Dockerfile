@@ -46,7 +46,7 @@ ENV PATH /app/node_modules/.bin:$PATH
 COPY package*.json ./
 
 #20201009 JHUSAK try to fix  Error: Cannot find "/app/tsconfig.json" file. Please check webpack and ForkTsCheckerWebpackPlugin configuration.
-#COPY tsconfig.json ./
+COPY tsconfig.json ./
 
 # install project dependencies
 RUN npm install @vue/cli@3.7.0 -g \
