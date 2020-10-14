@@ -34,10 +34,10 @@ COPY package*.json ./
 #COPY tsconfig.json ./
 
 #20201014b
-RUN npm i  && ln -s /app/node_modules/ /node_modules
+#RUN npm i  && ln -s /app/node_modules/ /node_modules
 RUN npm cache clean --force && npm cache verify && npm i -g npm-check-updates
 RUN npm-check-updates -u
-RUN npm install
+RUN npm install && npm audit fix
 
 # install project dependencies
 RUN npm install @vue/cli@3.7.0 -g \
