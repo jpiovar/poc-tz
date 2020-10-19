@@ -1,4 +1,5 @@
-FROM node:12.2.0-alpine
+#FROM node:12.2.0-alpine
+FROM node:14.4.0-alpine
 
 # Replace shell with bash so we can source files
 # RUN rm /bin/sh && ln -s /bin/bash /bin/sh
