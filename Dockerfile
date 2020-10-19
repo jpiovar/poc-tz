@@ -48,7 +48,7 @@ COPY package*.json ./
 #COPY tsconfig.json ./
 
 # install project dependencies
-RUN npm install @vue/cli@3.7.0 -g \
+RUN npm install @vue/cli@4.5.8 -g \
 && npm install && npm update
 
 #20201014 Added Jhusak 
