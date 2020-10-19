@@ -50,7 +50,7 @@ COPY package*.json ./
 # install project dependencies
 RUN npm install @vue/cli@4.5.8 -g \
 && npm install && npm update \
-&& npm audit fix
+&& npm audit fix --force
 
 
 #20201014 Added Jhusak 
