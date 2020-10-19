@@ -49,10 +49,12 @@ COPY package*.json ./
 
 # install project dependencies
 RUN npm install @vue/cli@4.5.8 -g \
-&& npm install && npm update
+&& npm install && npm update \
+&& npm audit fix
+
 
 #20201014 Added Jhusak 
-npm cache clean --force && npm cache verify && npm install && npm update
+#npm cache clean --force && npm cache verify && npm install && npm update
 
 # copy project files and folders to the current working directory (i.e. 'app' folder)
 COPY . .
