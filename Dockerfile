@@ -10,6 +10,7 @@ FROM node:14.4.0-alpine
 # make sure apt is up to date
 ##RUN apk add update --fix-missing
 RUN apk add --allow-untrusted curl \
+&&  apk add update --fix-missing\
 &&  apk add bash \
 && touch ~/.bash_profile
 
@@ -49,10 +50,10 @@ COPY package*.json ./
 
 # install project dependencies
 RUN npm install @vue/cli@3.7.0 -g \
-&& npm install
+&& npm install && npm update
 
 #20201014 Added Jhusak 
-npm cache clean --force && npm cache verify && npm install
+npm cache clean --force && npm cache verify && npm install && npm update
 
 # copy project files and folders to the current working directory (i.e. 'app' folder)
 COPY . .
