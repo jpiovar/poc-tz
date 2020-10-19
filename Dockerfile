@@ -10,7 +10,6 @@ FROM node:14.4.0-alpine
 # make sure apt is up to date
 ##RUN apk add update --fix-missing
 RUN apk add --allow-untrusted curl \
-&&  apk add update --fix-missing\
 &&  apk add bash \
 && touch ~/.bash_profile
 
