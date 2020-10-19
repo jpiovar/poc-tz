@@ -1,39 +1,39 @@
-#FROM node:12.2.0-alpine
-FROM node:14.14.0-alpine
+# set the base image to Debian
+# https://www.brianchristner.io/docker-image-base-os-size-comparison/
+# https://hub.docker.com/_/debian/
+FROM debian:jessie-slim
 
-# Replace shell with bash so we can source files
-# RUN rm /bin/sh && ln -s /bin/bash /bin/sh
+# Set debconf to run non-interactively
+RUN echo 'debconf debconf/frontend select Noninteractive' | debconf-set-selections
 
-#20201009 JHUSAK to try to fix Error: could not get uid/gid   [ 'nobody', 0 ]
-#RUN npm config set unsafe-perm true
+# Install base dependencies
+RUN apt-get update && apt-get upgrade -y
+RUN apt-get install -y -q --no-install-recommends \
+        apt-transport-https \
+        build-essential \
+        ca-certificates \
+        curl \
+        git \
+        libssl-dev \
+        python \
+        rsync \
+        software-properties-common \
+        devscripts \
+        autoconf \
+        ssl-cert \
+    && apt-get clean
 
-# make sure apt is up to date
-##RUN apk add update --fix-missing
-RUN apk add --allow-untrusted curl \
-&&  apk add bash \
-&& touch ~/.bash_profile
+# update the repository sources list
+# and install dependencies
+RUN curl -sL https://deb.nodesource.com/setup_8.x | bash -
+RUN apt-get install -y nodejs
 
-##RUN apk add -y build-essential libssl-dev
+# confirm installation
+RUN node -v
+RUN npm -v
 
-ENV NVM_DIR /usr/local
-##ENV NODE_VERSION 4.2.4
-
-# Install nvm with node and npm
-RUN curl https://raw.githubusercontent.com/creationix/nvm/v0.30.1/install.sh | bash 
-
-#RUN ${NVM_DIR}/nvm --version \
-#&& source $NVM_DIR/nvm.sh \
-#&& ${NVM_DIR}/nvm install node
-
-##RUN nvm install #$NODE_VERSION 
-##RUN nvm alias default #$NODE_VERSION 
-#RUN ${NVM_DIR}/nvm use default
-
-ENV NODE_PATH $NVM_DIR/v$NODE_VERSION/lib/node_modules
-ENV PATH      $NVM_DIR/versions/node/v$NODE_VERSION/bin:$PATH
-
-# install simple http server for serving static content
-#RUN npm install -g http-server
+# Use latest npm
+RUN npm i npm@latest -g
 
 # make the 'app' folder the current working directory
 WORKDIR /app
