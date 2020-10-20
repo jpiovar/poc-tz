@@ -221,7 +221,7 @@ export default class materialTransfer extends Vue {
   }
 
   inputCopied(item: any, index: number) {
-    debugger;
+    // debugger;
     this.copiedItems = {};
     this.copiedItems[item.rendered.id] = _.clone(item.rendered);
     this.addValidatorProps(this.copiedItems, item.rendered.id, index);
@@ -242,10 +242,10 @@ export default class materialTransfer extends Vue {
   }
 
   updateChangesAndStore() {
-    debugger;
+    // debugger;
     if (this.checkCopiedValues(this.copiedItemsArr)) {
-      debugger;
-      console.log('updateChangesAndStore done');
+      // debugger;
+      // console.log('updateChangesAndStore done');
       // const dataObj = _.values(this.copiedItems);
       const dataObj = this.consolidateData(this.copiedItemsArr);
       this.setMode({ reference: REFERENCE_INITIAL, status: MODE_LOADING });
@@ -255,7 +255,7 @@ export default class materialTransfer extends Vue {
         this.updateChanges();
       }, (error) => {
         this.messageBoxShow('error');
-        console.log('error ', error);
+        // console.log('error ', error);
       }).finally(() => {
         this.setMode({ reference: REFERENCE_INITIAL, status: MODE_LOADED });
         this.messageBoxHide();
@@ -361,18 +361,18 @@ export default class materialTransfer extends Vue {
   }
 
   loadMaterialItems() {
-    debugger;
+    // debugger;
     this.setMode({ reference: REFERENCE_INITIAL, status: MODE_LOADING });
     // httpMockService.getMockDataTransferDelay().then((response: any) => {
     // const headers = { 'Content-Type': 'text/plain;charset=UTF-8', 'ibm-sec-token': this.accessToken };
     httpService.getDirect(this.generateUrl).then((response) => {
-      debugger;
+      // debugger;
       // this.itemsMaterialFiltered = response;
       this.messageBoxShow('success');
       this.itemsMaterialFiltered = gh.renderedOriginal(response.data.materials);
     }, (error: any) => {
       this.messageBoxShow('error');
-      console.log('error ', error);
+      // console.log('error ', error);
     }).finally(() => {
       this.setMode({ reference: REFERENCE_INITIAL, status: MODE_LOADED });
       this.messageBoxHide();
@@ -381,7 +381,7 @@ export default class materialTransfer extends Vue {
   }
 
   checkCopiedValues(cItemsArr: any[]) {
-    debugger;
+    // debugger;
     let res = 0;
     for (let i = 0; i < cItemsArr.length; i++) {
       // if (cItemsArr[i].mvm.trim() === this.itemsMaterialFiltered[cItemsArr[i].index].rendered.mvm) {

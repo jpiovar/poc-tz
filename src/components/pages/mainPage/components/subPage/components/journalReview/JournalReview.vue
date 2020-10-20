@@ -260,7 +260,7 @@ export default class JournalReview extends Vue {
       this.itemsJournalFiltered = response.data;
     }, (error) => {
       this.messageBoxShow('error');
-      console.log('error ', error);
+      // console.log('error ', error);
     }).finally(() => {
       this.setMode({ reference: REFERENCE_INITIAL, status: MODE_LOADED });
       this.messageBoxHide();

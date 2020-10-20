@@ -86,7 +86,7 @@ export class GeneralHelper {
   // small idea refactor COC
 
   processAllowedCOC(pageOriginal: any, allowedItems: any): Object|undefined {
-    debugger;
+    // debugger;
     let res;
     if (pageOriginal && pageOriginal.id && this.isContentIdContained(pageOriginal.id, allowedItems).allowed) {
       res = {
@@ -102,7 +102,7 @@ export class GeneralHelper {
   }
 
   getPermissionsCOC(currentPageSubpages: any, allowedItems: any): Object {
-    debugger;
+    // debugger;
     currentPageSubpages.forEach((item: any) => {
       const isContained = this.isContentIdContained(item.id, allowedItems);
       if (item && item.id && isContained.allowed) {

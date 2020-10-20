@@ -79,7 +79,7 @@ export default class MainPage extends Vue {
     ({ reference, status }: { reference: Reference, status: AppMode }) => void;
 
   logout() {
-    console.log('logout clicked');
+    // console.log('logout clicked');
     this.logoutUser();
     const status = MODE_INITIAL;
     const reference = REFERENCE_INITIAL;
@@ -89,7 +89,7 @@ export default class MainPage extends Vue {
   }
 
   get userProfile() {
-    console.log('ok userProfile o');
+    // console.log('ok userProfile o');
     const { name, email, role } = this.userData;
     return { name, email, role };
   }

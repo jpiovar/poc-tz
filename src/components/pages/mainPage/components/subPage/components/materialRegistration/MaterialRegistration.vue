@@ -169,7 +169,7 @@ export default class MaterialRegistration extends Vue {
         this.initialRegData();
       }, (error) => {
         this.messageBoxShow('error');
-        console.log('error ', error);
+        // console.log('error ', error);
         this.initialRegData();
       }).finally(() => {
         this.setMode({ reference: REFERENCE_INITIAL, status: MODE_LOADED });
@@ -199,7 +199,7 @@ export default class MaterialRegistration extends Vue {
       // this.itemsJournalFiltered = response.data;
     }, (error) => {
       // this.messageBoxShow('error');
-      console.log('error ', error);
+      // console.log('error ', error);
     }).finally(() => {
       this.setMode({ reference: REFERENCE_INITIAL, status: MODE_LOADED });
       // this.messageBoxHide();

@@ -145,7 +145,7 @@ export class HttpService {
   */
   public get(endpoint: string, params : object): Promise<any> {
     /* eslint-disable */
-    console.log('protocol ',this.protocol, ' hostname ', this.hostname, ' formedURL ', this.formedURL);
+    // console.log('protocol ',this.protocol, ' hostname ', this.hostname, ' formedURL ', this.formedURL);
     return Vue.axios.get(`${this.formedURL}${endpoint}`, { params });
   }
 
@@ -155,12 +155,12 @@ export class HttpService {
    * @returns Promise<any>
   */
   public post(endpoint: string, body: any): Promise<any> {
-    console.log('protocol ',this.protocol, ' hostname ', this.hostname, ' formedURL ', this.formedURL);
+    // console.log('protocol ',this.protocol, ' hostname ', this.hostname, ' formedURL ', this.formedURL);
     return Vue.axios.post(`${this.formedURL}${endpoint}`, body);
   }
 
   public getDirect(url: string, headers: any = {}): Promise<any> {
-    debugger;
+    // debugger;
     return Vue.axios.get(url, headers);
   }
 

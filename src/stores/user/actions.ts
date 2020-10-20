@@ -26,7 +26,7 @@ const actions: ActionTree<UserStore, RootState> = {
           resolve(false);
         }
       }, (error) => {
-        console.log('error ', error);
+        // console.log('error ', error);
       });
     });
   },

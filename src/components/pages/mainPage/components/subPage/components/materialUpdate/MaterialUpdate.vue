@@ -262,7 +262,7 @@ export default class MaterialUpdate extends Vue {
       this.updateChanges();
     }, (error) => {
       this.messageBoxShow('error');
-      console.log('error ', error);
+      // console.log('error ', error);
     }).finally(() => {
       this.setMode({ reference: REFERENCE_INITIAL, status: MODE_LOADED });
       this.messageBoxHide();
@@ -361,7 +361,7 @@ export default class MaterialUpdate extends Vue {
       this.itemsMaterialFiltered = gh.renderedOriginal(response.data.materials);
     }, (error) => {
       this.messageBoxShow('error');
-      console.log('error ', error);
+      // console.log('error ', error);
     }).finally(() => {
       this.setMode({ reference: REFERENCE_INITIAL, status: MODE_LOADED });
       this.messageBoxHide();

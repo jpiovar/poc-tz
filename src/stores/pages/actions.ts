@@ -21,7 +21,7 @@ const actions: ActionTree<PagesStore, RootState> = {
         commit('storePagesData', { allPages: pagesBe, undefined });
         resolve(true);
       }, (error) => {
-        console.log('error ', error);
+        // console.log('error ', error);
       });
     });
   },
@@ -33,10 +33,10 @@ const actions: ActionTree<PagesStore, RootState> = {
       // const params = { roles: ['admin'] };
       const rolesArrStr = role.join(',');
       const queryString = `roles=${rolesArrStr}`;
-      debugger;
+      // debugger;
       const headers = { 'Content-Type': 'text/plain;charset=UTF-8', 'ibm-sec-token': token };
       httpService.getDirect(`${cocoUrl}?${queryString}`, { headers }).then((response: any) => {
-        debugger;
+        // debugger;
         // const res: any = response.allowed_content; // server response
         // const res: any = response; // server response
         const res: any = response.data; // COCO server response
@@ -60,7 +60,7 @@ const actions: ActionTree<PagesStore, RootState> = {
         commit('storePagesData', { allPages, userPages, currentPage });
         resolve(res);
       }, (error: any) => {
-        console.log('error ', error);
+        // console.log('error ', error);
         reject(error);
       });
     });

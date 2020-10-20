@@ -52,8 +52,8 @@ export default class App extends Vue {
   userStatusOut = USER_STATUS_OUT;
 
   created() {
-    console.log('version 20.11.2019 12.58');
-    console.log(process.env.VUE_APP_TITLE, ' ', process.env.VUE_APP_AUTHOR);
+    // console.log('version 20.11.2019 12.58');
+    // console.log(process.env.VUE_APP_TITLE, ' ', process.env.VUE_APP_AUTHOR);
     let status = MODE_LOADING;
     const reference = REFERENCE_INITIAL;
     this.setMode({ reference, status });
