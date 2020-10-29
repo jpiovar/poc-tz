@@ -17,18 +17,14 @@ const actions: ActionTree<UserStore, RootState> = {
       httpMockService.getMockAllowedCredentialsDelay({ name, password }).then((response: any) => {
       // httpService.get('authenticate', { params: { name, password } }).then((response) => {
       // httpService.post('authenticate', { credentials: { name, password } }).then((response) => {
-
         // SERVER
         // 20201029 commented
         // httpService.postDirect(loginUrl, { name, password }).then((response) => {
-        // const rr: any = response;  // mock response
-        
+        // const rr: any = response;  // mock response      
         // SERVER
-        // const res: any = response.data; // server response
-        
+        // const res: any = response.data; // server response      
         // MOCK
-        const res: any = response; // mock response
-        
+        const res: any = response; // mock response       
         if (res && res.statusCase && res.statusCase === 'ok') {
           commit('loginUser', { id: res.id, name: res.name, email: res.email, role: res.role, accessToken: res.token });
           resolve(res);
