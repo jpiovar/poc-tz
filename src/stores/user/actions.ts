@@ -19,7 +19,7 @@ const actions: ActionTree<UserStore, RootState> = {
       // httpService.post('authenticate', { credentials: { name, password } }).then((response) => {
         // SERVER
         // 20201029 commented
-        // httpService.postDirect(loginUrl, { name, password }).then((response) => {
+        httpService.postDirect(loginUrl, { name, password }).then((response) => {
         // const rr: any = response;  // mock response
         // SERVER
         const res: any = response.data; // server response
