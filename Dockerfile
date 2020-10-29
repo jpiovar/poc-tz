@@ -25,7 +25,7 @@ RUN apt-get install -y -q --no-install-recommends \
 
 # update the repository sources list
 # and install dependencies
-RUN curl -sL https://deb.nodesource.com/setup_8.x | bash -
+RUN curl -sL https://deb.nodesource.com/setup_10.x | bash -
 RUN apt-get install -y nodejs
 
 # confirm installation
@@ -48,7 +48,8 @@ COPY package*.json ./
 #COPY tsconfig.json ./
 
 # install project dependencies
-RUN npm install @vue/cli@4.5.8 -g \
+#RUN npm install @vue/cli@4.5.8 -g \
+RUN npm install -g @vue/cli \
 && npm install && npm update \
 && npm audit fix --force
 
