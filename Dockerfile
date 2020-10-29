@@ -26,7 +26,7 @@ RUN apt-get install -y -q --no-install-recommends \
 
 # update the repository sources list
 # and install dependencies
-RUN curl -sL https://deb.nodesource.com/setup_15.x | bash -
+RUN curl -sL https://deb.nodesource.com/setup_14.x | bash -
 RUN apt-get install -y nodejs
 
 # confirm installation
@@ -34,8 +34,8 @@ RUN node -v
 RUN npm -v
 
 # Use latest npm
-RUN npm install -g npm@7.0.6
-#RUN npm i npm@latest -g
+#RUN npm install -g npm@7.0.6
+RUN npm i npm@latest -g
 
 # make the 'app' folder the current working directory
 WORKDIR /app
