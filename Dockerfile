@@ -3,6 +3,8 @@
 # https://hub.docker.com/_/debian/
 FROM debian:jessie-slim
 
+ENV NODE_ENV=production
+
 # Set debconf to run non-interactively
 RUN echo 'debconf debconf/frontend select Noninteractive' | debconf-set-selections
 
