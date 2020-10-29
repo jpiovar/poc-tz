@@ -34,7 +34,8 @@ RUN node -v
 RUN npm -v
 
 # Use latest npm
-RUN npm i npm@latest -g
+RUN npm install -g npm@7.0.6`
+#RUN npm i npm@latest -g
 
 # make the 'app' folder the current working directory
 WORKDIR /app
