@@ -17,9 +17,9 @@ const actions: ActionTree<UserStore, RootState> = {
       // httpMockService.getMockAllowedCredentialsDelay({ name, password }).then((response: any) => {
       // httpService.get('authenticate', { params: { name, password } }).then((response) => {
       // httpService.post('authenticate', { credentials: { name, password } }).then((response) => {
-        // SERVER
-        // 20201029 commented
-        httpService.postDirect(loginUrl, { name, password }).then((response) => {
+      // SERVER
+      // 20201029 commented
+      httpService.postDirect(loginUrl, { name, password }).then((response) => {
         // const rr: any = response;  // mock response
         // SERVER
         const res: any = response.data; // server response
