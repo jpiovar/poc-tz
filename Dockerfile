@@ -1,7 +1,8 @@
 # set the base image to Debian
 # https://www.brianchristner.io/docker-image-base-os-size-comparison/
 # https://hub.docker.com/_/debian/
-FROM debian:jessie-slim
+#FROM debian:jessie-slim
+FROM debian:stable
 
 # Set debconf to run non-interactively
 RUN echo 'debconf debconf/frontend select Noninteractive' | debconf-set-selections
@@ -25,7 +26,7 @@ RUN apt-get install -y -q --no-install-recommends \
 
 # update the repository sources list
 # and install dependencies
-RUN curl -sL https://deb.nodesource.com/setup_10.x | bash -
+RUN curl -sL https://deb.nodesource.com/setup_15.x | bash -
 RUN apt-get install -y nodejs
 
 # confirm installation
