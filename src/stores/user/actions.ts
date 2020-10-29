@@ -14,7 +14,7 @@ const actions: ActionTree<UserStore, RootState> = {
     return new Promise((resolve, reject) => {
       // 20201029 uncommented
       // MOCK
-      httpMockService.getMockAllowedCredentialsDelay({ name, password }).then((response: any) => {
+      // httpMockService.getMockAllowedCredentialsDelay({ name, password }).then((response: any) => {
       // httpService.get('authenticate', { params: { name, password } }).then((response) => {
       // httpService.post('authenticate', { credentials: { name, password } }).then((response) => {
         // SERVER
@@ -22,9 +22,9 @@ const actions: ActionTree<UserStore, RootState> = {
         // httpService.postDirect(loginUrl, { name, password }).then((response) => {
         // const rr: any = response;  // mock response
         // SERVER
-        // const res: any = response.data; // server response
+        const res: any = response.data; // server response
         // MOCK
-        const res: any = response; // mock response
+        // const res: any = response; // mock response
         if (res && res.statusCase && res.statusCase === 'ok') {
           commit('loginUser', { id: res.id, name: res.name, email: res.email, role: res.role, accessToken: res.token });
           resolve(res);
