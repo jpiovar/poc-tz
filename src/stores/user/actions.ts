@@ -12,10 +12,12 @@ const loginUrl = process.env.VUE_APP_LOGIN_URL;
 const actions: ActionTree<UserStore, RootState> = {
   loginUser({ commit }: ActionContext<UserStore, RootState>, { name, password }: { name: string, password: string }): Promise<boolean> {
     return new Promise((resolve, reject) => {
-      // httpMockService.getMockAllowedCredentialsDelay({ name, password }).then((response: any) => {
+      //20201029 uncommented
+      httpMockService.getMockAllowedCredentialsDelay({ name, password }).then((response: any) => {
       // httpService.get('authenticate', { params: { name, password } }).then((response) => {
       // httpService.post('authenticate', { credentials: { name, password } }).then((response) => {
-      httpService.postDirect(loginUrl, { name, password }).then((response) => {
+        //20201029 commented
+        //httpService.postDirect(loginUrl, { name, password }).then((response) => {
         // const rr: any = response;  // mock response
         // const res: any = response.data; // server response
         const res: any = response.data; // server response
