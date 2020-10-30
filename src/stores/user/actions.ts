@@ -20,17 +20,17 @@ const actions: ActionTree<UserStore, RootState> = {
       // SERVER
       // 20201029 commented
       httpService.postDirect(loginUrl, { name, password }).then((response) => {
-      // const rr: any = response;  // mock response
-      // SERVER
-      const res: any = response.data; // server response
-      // MOCK
-      //  const res: any = response; // mock response
-      if (res && res.statusCase && res.statusCase === 'ok') {
-        commit('loginUser', { id: res.id, name: res.name, email: res.email, role: res.role, accessToken: res.token });
-        resolve(res);
-      } else {
-        resolve(false);
-      }
+        // const rr: any = response;  // mock response
+        // SERVER
+        const res: any = response.data; // server response
+        // MOCK
+        //  const res: any = response; // mock response
+        if (res && res.statusCase && res.statusCase === 'ok') {
+          commit('loginUser', { id: res.id, name: res.name, email: res.email, role: res.role, accessToken: res.token });
+          resolve(res);
+        } else {
+          resolve(false);
+        }
       }, (error) => {
         // console.log('error ', error);
       });
