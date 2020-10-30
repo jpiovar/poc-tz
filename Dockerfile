@@ -59,8 +59,7 @@ COPY . .
 
 # build app for production with minification
 RUN npm run build
-#LATEST HASH
-#RUN npm update
+RUN npm update
 
 EXPOSE 8080
 CMD ["npm", "run", "serve"]
