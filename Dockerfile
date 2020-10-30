@@ -3,6 +3,7 @@ FROM debian:stable
 # Set debconf to run non-interactively
 RUN echo 'debconf debconf/frontend select Noninteractive' | debconf-set-selections
 
+
 # Install base dependencies
 RUN apt-get update && apt-get upgrade -y
 RUN apt-get install -y -q --no-install-recommends \
@@ -38,6 +39,7 @@ WORKDIR /app
 
 # add '/app/node_modules/.bin' to $PATH
 ENV PATH /app/node_modules/.bin:$PATH
+ENV NODE_ENV production
 
 # copy both 'package.json' and 'package-lock.json' (if available)
 COPY package*.json ./
@@ -57,7 +59,8 @@ COPY . .
 
 # build app for production with minification
 RUN npm run build
-RUN npm update
+#LATEST HASH
+#RUN npm update
 
 EXPOSE 8080
 CMD ["npm", "run", "serve"]
