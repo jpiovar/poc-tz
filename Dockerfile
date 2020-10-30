@@ -1,7 +1,3 @@
-# set the base image to Debian
-# https://www.brianchristner.io/docker-image-base-os-size-comparison/
-# https://hub.docker.com/_/debian/
-#FROM debian:jessie-slim
 FROM debian:stable
 
 # Set debconf to run non-interactively
@@ -46,13 +42,10 @@ ENV PATH /app/node_modules/.bin:$PATH
 # copy both 'package.json' and 'package-lock.json' (if available)
 COPY package*.json ./
 
-#20201009 JHUSAK try to fix  Error: Cannot find "/app/tsconfig.json" file. Please check webpack and ForkTsCheckerWebpackPlugin configuration.
-#COPY tsconfig.json ./
-
 # install project dependencies
 #RUN npm install @vue/cli@4.5.8 -g \
 RUN npm install -g @vue/cli \
-&& npm install && npm update \
+&& npm update \
 && npm audit fix --force
 
 
@@ -63,7 +56,6 @@ RUN npm install -g @vue/cli \
 COPY . .
 
 # build app for production with minification
-#RUN nvm use 10.15 \
 RUN npm run build
 RUN npm update
 
