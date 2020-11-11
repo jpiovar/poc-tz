@@ -12,8 +12,8 @@ const loginUrl = process.env.VUE_APP_LOGIN_URL;
 const actions: ActionTree<UserStore, RootState> = {
   loginUser({ commit }: ActionContext<UserStore, RootState>, { name, password }: { name: string, password: string }): Promise<boolean> {
     return new Promise((resolve, reject) => {
-      debugger;
-      console.log('loginUser resolve ', resolve);
+      debugger; // eslint-disable-line
+      console.log('loginUser resolve ', resolve); // eslint-disable-line
       // 20201029 uncommented
       // MOCK
       // httpMockService.getMockAllowedCredentialsDelay({ name, password }).then((response: any) => {
@@ -22,8 +22,8 @@ const actions: ActionTree<UserStore, RootState> = {
       // SERVER
       // 20201029 commented
       httpService.postDirect(loginUrl, { name, password }).then((response) => {
-        debugger;
-        console.log('loginUser ok case ', response);
+        debugger; // eslint-disable-line
+        console.log('loginUser ok case ', response); // eslint-disable-line
         // const rr: any = response;  // mock response
         // SERVER
         const res: any = response.data; // server response
@@ -36,9 +36,9 @@ const actions: ActionTree<UserStore, RootState> = {
           resolve(false);
         }
       }, (error) => {
-        debugger;
-        console.log('loginUser no case ', error);
-        console.log('error ', error);
+        debugger; // eslint-disable-line
+        console.log('loginUser no case ', error); // eslint-disable-line
+        console.log('error ', error); // eslint-disable-line
       });
     });
   },
