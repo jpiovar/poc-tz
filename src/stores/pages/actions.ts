@@ -37,7 +37,7 @@ const actions: ActionTree<PagesStore, RootState> = {
       const headers = { 'Content-Type': 'text/plain;charset=UTF-8', 'ibm-sec-token': token };
       httpService.getDirect(`${cocoUrl}?${queryString}`, { headers }).then((response: any) => {
         // debugger;
-        console.log('userPagesData ok case coco ', response);
+        // console.log('userPagesData ok case coco ', response);
         // const res: any = response.allowed_content; // server response
         // const res: any = response; // server response
         const res: any = response.data; // COCO server response
@@ -62,8 +62,8 @@ const actions: ActionTree<PagesStore, RootState> = {
         resolve(res);
       }, (error: any) => {
         // debugger;
-        console.log('userPagesData error case coco ', error);
-        console.log('error ', error);
+        // console.log('userPagesData error case coco ', error);
+        // console.log('error ', error);
         reject(error);
       });
     });
