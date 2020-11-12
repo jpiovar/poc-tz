@@ -163,8 +163,8 @@ export default class MaterialRegistration extends Vue {
         mvm: String(this.regMvm.title).trim()
       };
       this.setMode({ reference: REFERENCE_INITIAL, status: MODE_LOADING });
-      // const headers = { 'Content-Type': 'text/plain;charset=UTF-8', 'ibm-sec-token': this.accessToken };
-      httpService.putDirect(material, [dataObj]).then((response) => {
+      const headers = { 'Content-Type': 'text/plain;charset=UTF-8', 'ibm-sec-token': this.accessToken };
+      httpService.putDirect(material, [dataObj], { headers }).then((response) => {
         this.messageBoxShow('success');
         this.initialRegData();
       }, (error) => {

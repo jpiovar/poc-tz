@@ -207,21 +207,37 @@ export default class JournalReview extends Vue {
     this.optionsKmat.push({ title: '' });
     this.optionsMvm1.push({ title: '' });
     this.optionsMvm2.push({ title: '' });
-
-    // const headers = { 'Content-Type': 'text/plain;charset=UTF-8', 'ibm-sec-token': this.accessToken };
-    httpService.getDirect(journalFiltersUrl).then((response) => {
+  debugger;
+    const headers = { 'Content-Type': 'text/plain;charset=UTF-8', 'ibm-sec-token': this.accessToken };
+    httpService.getDirect(journalFiltersUrl, { headers }).then((response) => { // real data
+      debugger;
       const resData = response.data;
-      Object.keys(resData).forEach((key) => {
-        for (let i = 0; i < resData[key].length; i++) {
-          if (key === 'kmat') {
-            this.optionsKmat.push({ title: resData[key][i] });
-          } else if (key === 'mvm1') {
-            this.optionsMvm1.push({ title: resData[key][i] });
-          } else if (key === 'mvm2') {
-            this.optionsMvm2.push({ title: resData[key][i] });
+      // Object.keys(resData).forEach((key) => {
+        // for (let i = 0; i < resData[key].length; i++) {
+        for (let i = 0; i < resData.length; i++) {
+          debugger;
+          if (resData[i].kmat) {
+            this.optionsKmat.push({ title: resData[i].kmat });
           }
+          if (resData[i].mvm1) {
+            this.optionsMvm1.push({ title: resData[i].mvm1 });
+          }
+          if (resData[i].mvm2) {
+            this.optionsMvm2.push({ title: resData[i].mvm2 });
+          }
+          // if (key === 'kmat') {
+          //   this.optionsKmat.push({ title: resData[key][i] });
+          // } else if (key === 'mvm1') {
+          //   this.optionsMvm1.push({ title: resData[key][i] });
+          // } else if (key === 'mvm2') {
+          //   this.optionsMvm2.push({ title: resData[key][i] });
+          // }
         }
-      });
+      // });
+    }, (error) => {
+      debugger;
+      // this.messageBoxShow('error');
+      // console.log('error ', error);
     }).finally(() => {
       this.optionsKmat = _.orderBy(_.uniqBy(this.optionsKmat, 'title'), ['title'], ['asc']);
       this.optionsMvm1 = _.orderBy(_.uniqBy(this.optionsMvm1, 'title'), ['title'], ['asc']);
@@ -253,8 +269,8 @@ export default class JournalReview extends Vue {
 
   loadJournalItems() {
     this.setMode({ reference: REFERENCE_INITIAL, status: MODE_LOADING });
-    // const headers = { 'Content-Type': 'text/plain;charset=UTF-8', 'ibm-sec-token': this.accessToken };
-    httpService.getDirect(this.generateUrl).then((response) => {
+    const headers = { 'Content-Type': 'text/plain;charset=UTF-8', 'ibm-sec-token': this.accessToken };
+    httpService.getDirect(this.generateUrl, { headers }).then((response) => {
     // httpMockService.getMockJournalDelay().then((response) => {
       this.messageBoxShow('success');
       this.itemsJournalFiltered = response.data;
