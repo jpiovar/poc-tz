@@ -207,15 +207,15 @@ export default class JournalReview extends Vue {
     this.optionsKmat.push({ title: '' });
     this.optionsMvm1.push({ title: '' });
     this.optionsMvm2.push({ title: '' });
-    debugger;
+    // debugger;
     const headers = { 'Content-Type': 'text/plain;charset=UTF-8', 'ibm-sec-token': this.accessToken };
     httpService.getDirect(journalFiltersUrl, { headers }).then((response) => { // real data
-      debugger;
+      // debugger;
       const resData = response.data;
       // Object.keys(resData).forEach((key) => {
       // for (let i = 0; i < resData[key].length; i++) {
       for (let i = 0; i < resData.length; i++) {
-        debugger;
+        // debugger;
         if (resData[i].kmat) {
           this.optionsKmat.push({ title: resData[i].kmat });
         }
@@ -235,7 +235,7 @@ export default class JournalReview extends Vue {
       }
       // });
     }, (error) => {
-      debugger;
+      // debugger;
       // this.messageBoxShow('error');
       // console.log('error ', error);
     }).finally(() => {
