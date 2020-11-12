@@ -180,12 +180,17 @@ export default class MaterialRegistration extends Vue {
 
   loadMaterialMvmItems() {
     this.optionsMvm.push({ title: '' });
-
+    debugger;
     this.setMode({ reference: REFERENCE_INITIAL, status: MODE_LOADING });
     // httpService.getDirect(this.generateUrl).then((response) => {
-    // httpMockService.getMockDataMaterialMvm1Delay().then((response) => {
-    httpService.getDirect(materialMvms).then((response) => {
-      const resData: any = response.data.mvms;
+    httpMockService.getMockDataMaterialMvm1Delay().then((response: any) => { // mock data
+    // httpService.getDirect(materialMvms).then((response) => { // real data
+      debugger;
+
+      const resData: any = response.mvm1; // mock data
+      // const resData: any = response.data.mvms; // real data
+
+
       // Object.keys(resData).forEach((key) => {
       // for (let i = 0; i < resData[key].length; i++) {
       for (let i = 0; i < resData.length; i++) {
@@ -198,9 +203,11 @@ export default class MaterialRegistration extends Vue {
       // this.messageBoxShow('success');
       // this.itemsJournalFiltered = response.data;
     }, (error) => {
+      debugger;
       // this.messageBoxShow('error');
       // console.log('error ', error);
     }).finally(() => {
+      debugger;
       this.setMode({ reference: REFERENCE_INITIAL, status: MODE_LOADED });
       // this.messageBoxHide();
       this.optionsMvm = _.orderBy(_.uniqBy(this.optionsMvm, 'title'), ['title'], ['asc']);
