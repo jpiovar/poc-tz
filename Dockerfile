@@ -64,7 +64,7 @@ COPY . .
 
 # build app for production with minification
 #RUN nvm use 10.15 \
-RUN npm run build
+RUN npm run build:prod
 RUN npm update
 
 EXPOSE 8080
